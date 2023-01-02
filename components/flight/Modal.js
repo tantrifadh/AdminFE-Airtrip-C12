@@ -24,7 +24,11 @@ const Modal = ({
     axios({
       url: data.id ? `/flights/update/${data.id}` : "/flights/create",
       method: data.id ? "PUT" : "POST",
-      data,
+      data: {
+        ...data,
+        departure: new Date(data.departure).toISOString(),
+        arrival: new Date(data.arrival).toISOString(),
+      },
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

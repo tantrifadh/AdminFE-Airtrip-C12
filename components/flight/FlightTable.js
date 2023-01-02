@@ -13,7 +13,8 @@ function parseDateString(date) {
 }
 
 function dateToDateTimeLocal(dateStr) {
-  return new Date()
+  console.log(dateStr);
+  return new Date(dateStr)
     .toLocaleString("sv-SE", {
       year: "numeric",
       month: "2-digit",
