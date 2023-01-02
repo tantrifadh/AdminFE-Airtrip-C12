@@ -3,6 +3,13 @@ import Table from "rc-table";
 import axios from "axios";
 import Modal from "./Modal";
 
+function parseDateString(date) {
+  return new Date(date).toLocaleString("en-GB", {
+    dateStyle: "long",
+    timeStyle: "short",
+  });
+}
+
 const TicketsTable = () => {
   const [modal, setModal] = useState(false);
   const [tickets, setTickets] = useState(null);
@@ -24,6 +31,16 @@ const TicketsTable = () => {
         return data.passenger.name;
       },
     },
+    {
+      title: "Order date",
+      dataIndex: "",
+      key: "orderdate",
+      className: "text-white min-w-fit bg-gray-800 p-2 border-r-2 border-b-2",
+      render: (column, data) => {
+        return parseDateString(data.createdAt);
+      },
+    },
+
     {
       title: "Total",
       dataIndex: "total_price",
