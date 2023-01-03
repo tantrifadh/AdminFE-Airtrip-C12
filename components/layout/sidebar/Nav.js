@@ -1,9 +1,8 @@
-import {
-  ArrowNarrowLeftIcon,
-  ArrowNarrowRightIcon,
-  CollectionIcon
-} from "@heroicons/react/solid";
 import { HiArrowNarrowRight, HiArrowNarrowLeft } from "react-icons/hi";
+import FlightIcon from "@mui/icons-material/Flight";
+import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
+import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import React, { useEffect, useState } from "react";
 import NavItem from "./NavItem";
 
@@ -23,7 +22,7 @@ const Nav = ({ sidebarOutsideClick }) => {
     setSubMenuToggleStatus(!subMenuToggleStatus);
   };
 
-   //if menu has chile menu then  use seperate array
+  //if menu has chile menu then  use seperate array
   //  const childMenu = [
   //   {
   //     subMenuTitle: "child One",
@@ -63,53 +62,43 @@ const Nav = ({ sidebarOutsideClick }) => {
         </div>
 
         <NavItem
-          hrefLink='/airplane'
+          hrefLink="/airplane"
           sidebarStatus={sidebarStatus}
           menuTitle="Airplane"
           subMenu={false}
           subMenuArray={null}
         >
-          <CollectionIcon className="h-10" />
-        </NavItem> 
+          <FlightIcon className="h-10 w-9" />
+        </NavItem>
 
         <NavItem
-          hrefLink='/airport'
+          hrefLink="/airport"
           sidebarStatus={sidebarStatus}
           menuTitle="Airport"
           subMenu={false}
           subMenuArray={null}
         >
-          <CollectionIcon className="h-10" />
-        </NavItem> 
+          <ConnectingAirportsIcon className="h-10 w-9" />
+        </NavItem>
 
         <NavItem
-          hrefLink='/flight'
+          hrefLink="/flight"
           sidebarStatus={sidebarStatus}
           menuTitle="Flight"
           subMenu={false}
           subMenuArray={null}
         >
-          <CollectionIcon className="h-10" />
-        </NavItem> 
-
-        <NavItem
-          hrefLink='/ticket'
-          sidebarStatus={sidebarStatus}
-          menuTitle="Ticket"
-          subMenu={false}
-          subMenuArray={null}
-        >
-          <CollectionIcon className="h-10" />
+          <FlightTakeoffIcon className="h-10 w-9" />
         </NavItem>
 
         <NavItem
-          hrefLink='/user'
+          hrefLink="/user"
           sidebarStatus={sidebarStatus}
           menuTitle="User"
           subMenu={false}
           subMenuArray={null}
         >
-          <CollectionIcon className="h-10" />
+          <AccountCircleIcon className="h-10 w-9" />
         </NavItem>
 
         {/* this menu has child Menu     */}
@@ -122,7 +111,6 @@ const Nav = ({ sidebarOutsideClick }) => {
         >
           <CollectionIcon className="h-10" />
         </NavItem>  */}
-       
       </nav>
     </>
   );
