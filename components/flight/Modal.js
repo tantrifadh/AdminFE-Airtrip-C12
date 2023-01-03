@@ -15,18 +15,12 @@ const Modal = ({
 }) => {
   function handleSubmit(e) {
     e.preventDefault();
-    // check if data empty
     for (const key in data) {
       if (!data[key]) {
         alert("please fill out the form!");
         return;
       }
     }
-
-    if (new Date(data.departure) > new Date(data.arrival)) {
-      alert("Tanggal tiba dan keberangkatan tidak valid");
-    }
-
     axios({
       url: data.id ? `/flights/update/${data.id}` : "/flights/create",
       method: data.id ? "PUT" : "POST",
