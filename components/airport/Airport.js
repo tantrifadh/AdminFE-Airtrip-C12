@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PageComponentTitle from "./PageComponentTitle";
 import AirportTable from "./AirportTable";
 import axios from "axios";
+import { Loading } from "../common/Loading";
 
 const Airport = () => {
   const [airports, setAirports] = useState(null);
@@ -19,6 +20,7 @@ const Airport = () => {
   useEffect(() => {
     fetchAirports();
   }, []);
+  if (!airports) return <Loading />;
   return (
     <main className="p-6 sm:p-10 space-y-6">
       <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">

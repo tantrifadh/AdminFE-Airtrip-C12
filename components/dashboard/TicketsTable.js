@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Table from "rc-table";
 import axios from "axios";
 import Modal from "./Modal";
+import { Loading } from "../common/Loading";
 
 function parseDateString(date) {
   return new Date(date).toLocaleString("en-GB", {
@@ -88,6 +89,9 @@ const TicketsTable = () => {
   useEffect(() => {
     fetchTickets();
   }, []);
+
+  if (!tickets) return <Loading />;
+
   return (
     <>
       <Table

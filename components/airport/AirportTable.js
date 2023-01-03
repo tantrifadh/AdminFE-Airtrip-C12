@@ -30,13 +30,13 @@ const AirportTable = ({ data }) => {
       className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
     },
 
-    {
-      title: "Operations",
-      dataIndex: "",
-      key: "operations",
-      className: "text-white bg-gray-800 p-2 border-b-2",
-      // render: () => <><a href="#">View</a> | <a href="#">Edit</a> | <a href="#">Delete</a></>,
-    },
+    // {
+    //   title: "Operations",
+    //   dataIndex: "",
+    //   key: "operations",
+    //   className: "text-white bg-gray-800 p-2 border-b-2",
+    //   // render: () => <><a href="#">View</a> | <a href="#">Edit</a> | <a href="#">Delete</a></>,
+    // },
   ];
 
   //Pagination
