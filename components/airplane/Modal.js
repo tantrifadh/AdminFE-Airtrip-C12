@@ -1,29 +1,70 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 
-const Modal = ({modal, setModal}) => {
-     //For Image Preview
-     const [selectedImage, setSelectedImage] = useState();
+const Modal = ({modal, 
+  setModal,
+  data,
+  setData,
+  fetchAirplane
+}) => {
+  function handleSubmit(e) {
+    e.preventDefault();
+    for (const key in data) {
+      if (!data[key]) {
+        alert("please fill out the form!");
+        return;
+      }
+    }
+    axios({
+      url: data.id ? '/airplanes/update/${data.id}' : "/airplanes/create",
+      method: data.id ? "PUT" : "POST",
+      data,
+      headers: {
+        Authorization: 'Bearer $(localStorage.getItem("token")}',
+      },
+    })
+      .then((response) => {
+        fetchAirplane();
+        setModal(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err);
+      });
+  }
 
-     // This function will be triggered when the file field change
-    const imageChange = (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-        setSelectedImage(e.target.files);
-        }
-    };
+  function handleChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
 
-    // This function will be triggered when the "Remove This Image" button is clicked
-    const removeSelectedImage = () => {
-        setSelectedImage();
-    };   
+    setData((prev) => {
+      return { ...prev, [name]: value};
+    });
+  }
 
-    useEffect(()=>{
-        if(!modal){
-            setSelectedImage();
-            }
-    },[modal])
+    //For Image Preview
+  const [selectedImage, setSelectedImage] = useState();
+
+    // This function will be triggered when the file field change
+  const imageChange = (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files);
+      }
+  };
+
+  // This function will be triggered when the "Remove This Image" button is clicked
+  const removeSelectedImage = () => {
+      setSelectedImage();
+  };   
+
+  useEffect(()=>{
+      if(!modal){
+          setSelectedImage();
+          }
+  },[modal])
   //console.log('modal modal', modal)
   return (
     <>
@@ -37,7 +78,7 @@ const Modal = ({modal, setModal}) => {
         }}
   
       >
-        <div className="flex-row space-y-3 relative">
+        <form className="flex-row space-y-3 relative" onSubmit={handleSubmit}>
             <div className="bg-blue-300 p-2 font-bold text-lg text-center text-white -mt-4 -mx-4 mb-5 pb-4">
                 <p>Airplane</p>
             </div>
@@ -71,22 +112,40 @@ const Modal = ({modal, setModal}) => {
 
             </div>
             <div className="flex justify-between">
-                <label className="font-semibold pr-2">No. Model</label>
-                <input className="border-2 border-blue-300/50 w-[75%] " type="text" />
+                <label className="font-semibold pr-2">Model Number</label>
+                <input 
+                  className="border-2 border-blue-300/50 w-[75%] " 
+                  type="number"
+                  name="model_number"
+                  onChange={handleChange}
+                  value={data.model_number}
+                />
             </div>
             <div className="flex justify-between">
                 <label className="font-semibold pr-2">Manufacture</label>
-                <input className="border-2 border-blue-300/50 w-[75%] " type="text" />
+                <input 
+                  className="border-2 border-blue-300/50 w-[75%] " 
+                  type="manufacture" 
+                  name="manufacture"
+                  onChange={handleChange}
+                  value={data.manufacture}
+                />
             </div>
             <div className="flex justify-between">
                 <label className="font-semibold pr-2">Capacity</label>
-                <input className="border-2 border-blue-300/50 w-[75%] " type="text" />
+                <input 
+                  className="border-2 border-blue-300/50 w-[75%] "
+                  type="number" 
+                  name="capacity"
+                  onChange={handleChange}
+                  value={data.capacity}
+                />
             </div>
-            
+
             <div className="flex justify-between">
-                <button className="bg-blue-300 text-white p-3 w-full mt-5 text-lg">Submit</button>
+                <button className="bg-blue-300 text-white p-3 w-full mt-5 text-lg" onClick={submit}>Submit</button>
             </div>
-        </div>
+        </form>
       </PureModal>
     </>
   );
