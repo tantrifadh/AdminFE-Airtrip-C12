@@ -3,6 +3,7 @@ import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 
 const ModalView = ({ data, modal, setModal }) => {
+  if (!data) return null;
   return (
     <>
       <PureModal
@@ -21,7 +22,7 @@ const ModalView = ({ data, modal, setModal }) => {
             <p htmlFor="image" className="font-semibold pr-2">
               Image
             </p>
-            <p className="w-[-75%]">{data.image}</p>
+            <p className="w-3/4">{data.image}</p>
           </div>
           <div className="flex justify-between">
             <p htmlFor="model_number" className="font-semibold pr-2">
@@ -40,6 +41,16 @@ const ModalView = ({ data, modal, setModal }) => {
               Capacity
             </p>
             <p className="w-[-75%]">{data.capacity}</p>
+          </div>
+          <div className="flex justify-between">
+            <p htmlFor="capacity" className="font-semibold pr-2">
+              Specs
+            </p>
+            <p className="w-[-75%]">
+              {data.specs.reduce(
+                (specsString, spec) => `${specsString}, ${spec}`
+              )}
+            </p>
           </div>
         </div>
       </PureModal>

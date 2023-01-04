@@ -4,22 +4,6 @@ import AirplaneTable from "./AirplaneTable";
 import axios from "axios";
 import { Loading } from "../common/Loading";
 
-function parseAirplane(airplanes) {
-  const rows = airplanes.map((airplane) => {
-    return {
-      id: airplane.id,
-      image: airplane.image,
-      model_number: airplane.model_number,
-      manufacture: airplane.manufacture,
-      capacity: airplane.capacity,
-    };
-  });
-
-  //const headers = Object.keys(rows[0]);
-
-  return rows;
-}
-
 const Airplane = () => {
   const airplaneData = useRef(null);
   const [airplanes, setAirplanes] = useState(null);
@@ -31,9 +15,9 @@ const Airplane = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      airplaneData.current = data.data.data;
+      // airplaneData.current = data.data.data;
 
-      setAirplanes(parseAirplane(airplaneData.current));
+      setAirplanes(data.data.data);
     } catch (error) {
       console.log(error);
     }

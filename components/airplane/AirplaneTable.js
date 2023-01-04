@@ -11,9 +11,10 @@ const AirplaneTable = ({ datas, fetchAirplanes }) => {
     model_number: "",
     manufacture: "",
     capacity: "",
+    specs: "",
   };
   const [dataOnEdit, setDataOnEdit] = useState(dataInit);
-  const dataView = useRef(dataInit);
+  const dataView = useRef(null);
   const dataDelete = useRef(0);
 
   const [modalEdit, setModalEdit] = useState(false);
@@ -32,36 +33,27 @@ const AirplaneTable = ({ datas, fetchAirplanes }) => {
       dataIndex: "image",
       key: "image",
       className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
-      render: (column, data) => {
-        return data.image;
-      },
+      render: (column, data) => (
+        <img src={data.image} alt="airplane" className="w-34" />
+      ),
     },
     {
       title: "Model Number",
       dataIndex: "model_number",
       key: "model_number",
       className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
-      render: (column, data) => {
-        return data.model_number;
-      },
     },
     {
       title: "Manufacture",
       dataIndex: "manufacture",
       key: "manufacture",
       className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
-      render: (column, data) => {
-        return data.manufacture;
-      },
     },
     {
       title: "Capacity",
       dataIndex: "capacity",
       key: "capacity",
       className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
-      render: (column, data) => {
-        return data.manufacture;
-      },
     },
     {
       title: "Operations",
@@ -69,41 +61,39 @@ const AirplaneTable = ({ datas, fetchAirplanes }) => {
       key: "operations",
       className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
       render: (column, data) => {
-        <>
-          <a
-            role={"button"}
-            onClick={() => {
-              dataView.current = data;
-              setModalView(true);
-            }}
-          >
-            View
-          </a>{" "}
-          |{" "}
-          <a
-            onClick={() => {
-              setDataOnEdit({
-                id: data.id,
-                image: data.image,
-                model_number: data.manufacture,
-                capacity: data.capacity,
-              });
-              setModalEdit(true);
-            }}
-            role={"button"}
-          >
-            Edit
-          </a>{" "}
-          |{" "}
-          <a
-            role={"button"}
-            onClick={() => {
-              // dataDelete(true);
-            }}
-          >
-            Delete
-          </a>
-        </>;
+        return (
+          <>
+            <a
+              role={"button"}
+              onClick={() => {
+                dataView.current = data;
+                setModalView(true);
+              }}
+            >
+              View
+            </a>{" "}
+            |{" "}
+            <a
+              onClick={() => {
+                setDataOnEdit(data);
+                setModalEdit(true);
+              }}
+              role={"button"}
+            >
+              Edit
+            </a>{" "}
+            |{" "}
+            <a
+              role={"button"}
+              onClick={() => {
+                dataDelete.current = data.id;
+                setModalDelete(true);
+              }}
+            >
+              Delete
+            </a>
+          </>
+        );
       },
     },
   ];

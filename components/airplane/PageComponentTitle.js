@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
-import Modal from './Modal';
+import React, { useState } from "react";
+import Modal from "./Modal";
 
 const PageComponentTitle = ({
-  title, 
-  titleDescription, 
+  title,
+  titleDescription,
   buttonTitle,
-  fetchAirplanes
+  fetchAirplanes,
 }) => {
-    const [modal, setModal] = useState(false);
-    const [airplaneData, setAirplanesData] = useState({
-      image: "",
-      model_number: "",
-      manufacture: "",
-      capacity: ""
-    });
-    
+  const [modal, setModal] = useState(false);
+  const [airplaneData, setAirplanesData] = useState({
+    image: "",
+    model_number: "",
+    manufacture: "",
+    capacity: "",
+    specs: "",
+  });
+
   return (
-      <>
+    <>
       <div className="mr-6">
         <h1 className="text-4xl font-semibold mb-2">{title}</h1>
         <h2 className="text-gray-600 ml-0.5">{titleDescription}</h2>
@@ -43,12 +44,12 @@ const PageComponentTitle = ({
           </svg>
           {buttonTitle}
         </button>
-        <Modal 
-          modal={modal} 
+        <Modal
+          modal={modal}
           setModal={setModal}
           data={airplaneData}
           setData={setAirplanesData}
-          fetchAirplane={fetchAirplanes} 
+          fetchAirplane={fetchAirplanes}
         />
       </div>
     </>

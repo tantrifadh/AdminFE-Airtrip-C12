@@ -3,16 +3,16 @@ import React from "react";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 
-const ModalDeleteConfirm = ({ data, modal, setModal, fetchAirplane }) => {
+const ModalDeleteConfirm = ({ data, modal, setModal, fetchAirplanes }) => {
   function handleDelete() {
     axios
-      .delete("airplanes/delete/${data}", {
+      .delete(`/airplanes/delete/${data}`, {
         headers: {
-          Authorization: 'Bearer ${localStorage.getItem("token")}',
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then(() => {
-        fetchAirplane();
+        fetchAirplanes();
         setModal(false);
       })
       .catch((err) => {
