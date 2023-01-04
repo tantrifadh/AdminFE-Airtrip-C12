@@ -75,7 +75,7 @@ const AirplaneTable = ({ datas, fetchAirplanes }) => {
             |{" "}
             <a
               onClick={() => {
-                setDataOnEdit(data);
+                setDataOnEdit({ ...data, image: "" });
                 setModalEdit(true);
               }}
               role={"button"}
