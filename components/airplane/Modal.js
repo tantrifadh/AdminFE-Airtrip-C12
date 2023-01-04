@@ -4,16 +4,7 @@ import React, { useEffect, useState } from "react";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 
-<<<<<<< HEAD
-const Modal = ({modal, 
-  setModal,
-  data,
-  setData,
-  fetchAirplane
-}) => {
-=======
 const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
->>>>>>> 82ee4676d32cb674764dfa965d679464765a5114
   function handleSubmit(e) {
     e.preventDefault();
     for (const key in data) {
@@ -23,19 +14,11 @@ const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
       }
     }
     axios({
-<<<<<<< HEAD
-      url: data.id ? '/airplanes/update/${data.id}' : "/airplanes/create",
-      method: data.id ? "PUT" : "POST",
-      data,
-      headers: {
-        Authorization: 'Bearer $(localStorage.getItem("token")}',
-=======
       url: data.id ? `/airplanes/update/${data.id}` : "/airplanes/create",
       method: data.id ? "PUT" : "POST",
       data,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
->>>>>>> 82ee4676d32cb674764dfa965d679464765a5114
       },
     })
       .then((response) => {
@@ -53,20 +36,6 @@ const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
     const value = e.target.value;
 
     setData((prev) => {
-<<<<<<< HEAD
-      return { ...prev, [name]: value};
-    });
-  }
-
-    //For Image Preview
-  const [selectedImage, setSelectedImage] = useState();
-
-    // This function will be triggered when the file field change
-  const imageChange = (e) => {
-      if (e.target.files && e.target.files.length > 0) {
-      setSelectedImage(e.target.files);
-      }
-=======
       return { ...prev, [name]: value };
     });
   }
@@ -79,21 +48,10 @@ const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files);
     }
->>>>>>> 82ee4676d32cb674764dfa965d679464765a5114
   };
 
   // This function will be triggered when the "Remove This Image" button is clicked
   const removeSelectedImage = () => {
-<<<<<<< HEAD
-      setSelectedImage();
-  };   
-
-  useEffect(()=>{
-      if(!modal){
-          setSelectedImage();
-          }
-  },[modal])
-=======
     setSelectedImage();
   };
 
@@ -102,7 +60,6 @@ const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
       setSelectedImage();
     }
   }, [modal]);
->>>>>>> 82ee4676d32cb674764dfa965d679464765a5114
   //console.log('modal modal', modal)
   return (
     <>
@@ -116,10 +73,6 @@ const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
         }}
       >
         <form className="flex-row space-y-3 relative" onSubmit={handleSubmit}>
-<<<<<<< HEAD
-            <div className="bg-blue-300 p-2 font-bold text-lg text-center text-white -mt-4 -mx-4 mb-5 pb-4">
-                <p>Airplane</p>
-=======
           <div className="bg-blue-300 p-2 font-bold text-lg text-center text-white -mt-4 -mx-4 mb-5 pb-4">
             <p>Airplane</p>
           </div>
@@ -149,7 +102,6 @@ const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
                     className="w-32 h-32 mr-1 rounded-sm border-4"
                   />
                 ))}
->>>>>>> 82ee4676d32cb674764dfa965d679464765a5114
             </div>
 
             {selectedImage && (
@@ -192,43 +144,6 @@ const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
             />
           </div>
 
-<<<<<<< HEAD
-            </div>
-            <div className="flex justify-between">
-                <label className="font-semibold pr-2">Model Number</label>
-                <input 
-                  className="border-2 border-blue-300/50 w-[75%] " 
-                  type="number"
-                  name="model_number"
-                  onChange={handleChange}
-                  value={data.model_number}
-                />
-            </div>
-            <div className="flex justify-between">
-                <label className="font-semibold pr-2">Manufacture</label>
-                <input 
-                  className="border-2 border-blue-300/50 w-[75%] " 
-                  type="manufacture" 
-                  name="manufacture"
-                  onChange={handleChange}
-                  value={data.manufacture}
-                />
-            </div>
-            <div className="flex justify-between">
-                <label className="font-semibold pr-2">Capacity</label>
-                <input 
-                  className="border-2 border-blue-300/50 w-[75%] "
-                  type="number" 
-                  name="capacity"
-                  onChange={handleChange}
-                  value={data.capacity}
-                />
-            </div>
-
-            <div className="flex justify-between">
-                <button className="bg-blue-300 text-white p-3 w-full mt-5 text-lg" onClick={submit}>Submit</button>
-            </div>
-=======
           <div className="flex justify-between">
             <button
               type="submit"
@@ -237,7 +152,6 @@ const Modal = ({ modal, setModal, data, setData, fetchAirplane }) => {
               Submit
             </button>
           </div>
->>>>>>> 82ee4676d32cb674764dfa965d679464765a5114
         </form>
       </PureModal>
     </>
